@@ -29,4 +29,9 @@ public class Posts { //클래스의 카멜케이스 이름을 언더스코어 �
         this.content = content;
         this.author = author;
     }
+
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
 }
