@@ -5,10 +5,12 @@
 #### 🏷️ 깃 커밋 컨벤션
 |태그|설명|
 |------|--------------------------------|
-|feat|기능 추가|
+|feat|새로운 개념/기능 추가|
 |fix|버그 수정|
-|chore|기타 변경사항|
+|refactor|리팩토링|
+|chore|기타 변경사항 (설정 변경, 환경 설정 관련)|
 |docs|문서 추가, 수정, 삭제|
+|test|테스트 코드 추가/수정|
 |init|초기 생성|
 
 ***
@@ -49,12 +51,10 @@
 
 ***
 
-## 💡 DDD(Domain-Driven-Design)원칙
+## 💡 DDD(Domain-Driven-Design)
 - 도메인 모델 자체가 비즈니스 로직을 포함하고 있는 설계
 - 비즈니스 로직이 도메인 모델에 포함되어 있어 개념과 규칙을 명확히 표현할 수 있음 
 - <a href="https://velog.io/@dnflekf2748/DDDDomain-Driven-Design">DDD 개념 참고 블로그</a>
-
-***
 
 ## 💡 폴더 구조 및 역할
 📂 domain/  <br>
