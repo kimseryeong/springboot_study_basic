@@ -4,18 +4,18 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 
 ## 📚 개념 정리
 
-- [Layered Architecture](concepts/layeredArchitecture.md)C:\dev\springboot-study-basic\springboot_study_basic\books\springboot-aws-web
+📂 [Layered Architecture](concepts/layeredArchitecture.md)
 
 ---
 
-#### 🏷️ 깃 커밋 컨벤션
+## 🏷️ 깃 커밋 컨벤션
 
 | 태그     | 설명                                      |
 | -------- | ----------------------------------------- |
 | feat     | 새로운 개념/기능 추가                     |
 | fix      | 버그 수정                                 |
 | refactor | 리팩토링                                  |
-| chore    | 기타 변경사항 (설정 변경, 환경 설정 관련) |
+| chore    | 기타 변경사항 (설정 변경, 환경 설정 관련, 폴더구조) |
 | docs     | 문서 추가, 수정, 삭제                     |
 | test     | 테스트 코드 추가/수정                     |
 | init     | 초기 생성                                 |
