@@ -22,9 +22,9 @@ public class TodoController {
 	@GetMapping("/test")
 	public ResponseEntity<?> testTodo(){
 		
-		String str = todoService.testService();
+		String title = todoService.testService();
 		List<String> list = new ArrayList<>();
-		list.add(str);
+		list.add(title);
 		
 		ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();		
 		return ResponseEntity.ok().body(response);
