@@ -9,6 +9,8 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 📂 [Layered Architecture](concepts/layeredArchitecture.md) <br>
 
 📂 [JPA](concepts/jpa.md) <br>
+📂 [Spring Data JPA](concepts/spring-data-jpa.md) <br>
+📂 [JPA DTO vs Entity](concepts/jpa-dto-vs-entity.md) <br>
 
 
 
