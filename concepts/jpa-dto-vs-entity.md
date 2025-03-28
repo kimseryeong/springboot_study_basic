@@ -1,13 +1,12 @@
 # 📌 DTO와 Entity 분리
 
 ```
-JPA 는 데이터베이스와 객체를 자동으로 매핑해주는 기술,
-이 특징 때문에 DTO와 Entity를 분리하는 것이 중요요
+JPA 는 데이터베이스와 객체를 자동으로 매핑해주는 기술, 이 특징 때문에 DTO와 Entity를 분리하는 것이 중요
 ```
 
 ## ☑️ 분리하는 이유?
 
-### 1️⃣ Entity 는 데이터베이스와 연결되어 있음 <br> (Entity는 JPA가 관리하는 객체)
+### 1️⃣ Entity 는 데이터베이스와 연결되어 있음 (Entity는 JPA가 관리하는 객체)
 
 <br> → 트랜잭션이 종료될 때 변경 사항이 자동 반영됨 (변경 감지에 의함)
 
@@ -25,7 +24,7 @@ public List<TodoEntity> getTodos() {
 
 <br>
 
-#### 💠 DTO를 사용한 좋은 예시
+#### 🗝️ DTO를 사용한 좋은 예시
 
 ```
 @GetMapping("/todos")
@@ -52,15 +51,13 @@ public List<TodoEntity> getTodos() {
     return todoRepository.findAll();
     // Lazy Loading으로 인해 N+1 문제 발생 가능
 }
-
 ```
 
-#### 💠 DTO를 사용한 좋은 예시
+#### 🗝️ DTO를 사용한 좋은 예시
 
 ```
 @Query("SELECT new com.example.TodoDTO(t.id, t.title) FROM TodoEntity t WHERE t.uuid = :uuid")
 List<TodoDTO> findTodosByUserId(@Param("uuid") String uuid);
-
 ```
 
 <br>
