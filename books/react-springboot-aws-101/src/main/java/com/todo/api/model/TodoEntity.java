@@ -1,9 +1,9 @@
 package com.todo.api.model;
 
-import org.hibernate.annotations.GenericGenerator;
+
+import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -20,9 +20,10 @@ import lombok.NoArgsConstructor;
 public class TodoEntity {
 
 	@Id //기본키가 될 필드에 지정
-	@GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
+	@UuidGenerator
 	private String uuid;
+	private int id;
+	private String userId;
 	private String email;
 	private String title;
 	private String content;
