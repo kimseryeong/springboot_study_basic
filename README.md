@@ -4,9 +4,14 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 
 ## 📚 개념 정리
 
-📂 [Layered Architecture](concepts/layeredArchitecture.md)
-<br>
-📂 [JPA](concepts/jpa.md)
+📂 [Gradle](concepts/gradle.md) <br>
+
+📂 [Layered Architecture](concepts/layeredArchitecture.md) <br>
+
+📂 [JPA](concepts/jpa.md) <br>
+
+
+
 
 ---
 
