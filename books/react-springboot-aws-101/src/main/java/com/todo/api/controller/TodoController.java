@@ -35,31 +35,40 @@ public class TodoController {
 		return ResponseEntity.ok().body(response);
 	}
 	
+	/**
+	 * Todo 생성
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping
 	public ResponseEntity<?> createTodo(@RequestBody TodoDTO dto){
-		//클라이언트가 JSON 형태로 보낸 데이터를 TodoDTO 객체로 변환해서 받음
+		//@RequestBody: 클라이언트가 JSON 형태로 보낸 데이터를 TodoDTO 객체로 변환해서 받음
 		
 		try {
-			//임시 userId 생성 (로그인 기능이 아직 없기 때문)
-			String tempUserId = "tempUserId";
 			
 			//TodoDTO를 TodoEntity 객체로 변환
 			//DTO(Data Transfer Object): 클라이언트와 데이터 주고받을 때 사용
 			//Entity: DB에 저장될 데이터 객체
 			TodoEntity entity = TodoDTO.todoEntity(dto);
 			
-			entity.setUuid(tempUserId);
+			//임시 userId 생성 (로그인 기능이 아직 없기 때문)
+			String tempUserId = "tempUserId";
+			entity.setUserId(tempUserId);
+
+			//id를 null로 초기화. 생성 당시는 id가 없기 때문
+			entity.setId(0);
 			
+			//서비스를 통해 Todo 엔티티 생성
 			//변환한 데이터 DB 저장
 			//새로운 할 일이 저장되면서 여러 개의 TodoEntity를 반환
 			List<TodoEntity> entities = todoService.create(entity);
 			
 			//Entity를 DTO로 변환
-			//1. ".stream().map(TodoDTO::new)": list -> stream()으로 변환
+			//1. ".stream().map(e -> new TodoDTO(e))": entity list stream()
 			//	 각 TodoEntity 객체를 TodoDTO 생성자를 이용해 변환
 			//2. ".collect(Collectors.toList())": 변환된 데이터를 리스트로 모음
 			List<TodoDTO> dtos = entities.stream()
-					.map(entity -> new TodoDTO(entity))
+					.map(e -> new TodoDTO(e))
 					.collect(Collectors.toList());
 			
 			//응답 데이터 형식을 통일하기 위한 DTO 클래스

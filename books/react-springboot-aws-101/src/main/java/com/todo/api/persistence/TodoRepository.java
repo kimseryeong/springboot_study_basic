@@ -11,7 +11,7 @@ import com.todo.api.model.TodoEntity;
 public interface TodoRepository extends JpaRepository<TodoEntity, String>{
 
 	//Select * from TodoRepository where userId = userId;
-	List<TodoEntity> findByUserId(String uuid);
+	List<TodoEntity> findByUserId(String userId);
 	
 	//복잡한 쿼리 사용법
 	//@Query("select * from Todo t where t.userId = ?1")

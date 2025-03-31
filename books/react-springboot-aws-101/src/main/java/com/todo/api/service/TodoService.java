@@ -32,6 +32,11 @@ public class TodoService {
 		return savedEntity.getTitle();
 	}
 	
+	/**
+	 * create Todo 
+	 * @param entity
+	 * @return
+	 */
 	public List<TodoEntity> create(final TodoEntity entity){
 		validate(entity);
 		
@@ -42,6 +47,10 @@ public class TodoService {
 		return todoRespository.findByUserId(entity.getUuid());
 	}
 	
+	/**
+	 * Validation method
+	 * @param entity
+	 */
 	public void validate(final TodoEntity entity) {
 		if(entity == null) {
 			log.warn("Entity cannot be null");

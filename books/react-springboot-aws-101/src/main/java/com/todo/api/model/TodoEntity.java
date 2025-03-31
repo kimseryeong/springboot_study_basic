@@ -21,8 +21,8 @@ public class TodoEntity {
 
 	@Id //기본키가 될 필드에 지정
 	@UuidGenerator
-	private String uuid;
 	private int id;
+	private String uuid;
 	private String userId;
 	private String email;
 	private String title;
