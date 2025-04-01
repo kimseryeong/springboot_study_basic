@@ -5,6 +5,7 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 ## 📚 개념 정리
 
 📂 [Gradle](concepts/gradle.md) <br>
+📂 [Annotations](concepts/annotations.md) <br>
 
 📂 [Layered Architecture](concepts/layeredArchitecture.md) <br>
 
@@ -12,6 +13,8 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 📂 [Spring Data JPA](concepts/spring-data-jpa.md) <br>
 📂 [JPA DTO vs Entity](concepts/jpa-dto-vs-entity.md) <br>
 
+📂 [Java Stream](concepts/java-stream.md) <br>
+📂 [Java Builder](concepts/java-builder.md) <br>
 
 
 
