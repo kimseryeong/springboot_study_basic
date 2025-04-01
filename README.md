@@ -5,7 +5,10 @@ Spring Boot 공부 내용을 정리한 공간입니다.
 ## 📚 개념 정리
 
 📂 [Gradle](concepts/gradle.md) <br>
-📂 [Annotations](concepts/annotations.md) <br>
+📂 [Annotations](concepts/annotation/annotations.md) <br>
+├───📂 [Spring Boot 관련 Annotation](concepts/annotation/annotation-springboot.md)  <br>
+├───📂 [Lombok 관련 Annotation](concepts/annotation/annotation-lombok.md)  <br>
+├───📂 [JPA 관련 Annotation](concepts/annotation/annotation-jpa.md)  <br>
 
 📂 [Layered Architecture](concepts/layeredArchitecture.md) <br>
 
