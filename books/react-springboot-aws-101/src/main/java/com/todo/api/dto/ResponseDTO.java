@@ -12,8 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ResponseDTO<T> {
-	//Todo 이외의 다른 모델의 DTO도 ResponseDTO를 이용해 리턴할 수 있도록 
 	//자바 Generic 사용
+	//Todo 이외의 다른 모델의 DTO도 ResponseDTO를 이용해 리턴할 수 있도록 
 	private String error;
 	private List<T> data; 
 }

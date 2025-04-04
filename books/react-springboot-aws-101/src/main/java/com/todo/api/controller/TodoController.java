@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.catalina.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +43,7 @@ public class TodoController {
 	 * @param dto
 	 * @return
 	 */
-	@PostMapping
+	@PostMapping("createTodo")
 	public ResponseEntity<?> createTodo(@RequestBody TodoDTO dto){
 		//@RequestBody: 클라이언트가 JSON 형태로 보낸 데이터를 TodoDTO 객체로 변환해서 받음
 		
@@ -56,7 +59,7 @@ public class TodoController {
 			entity.setUserId(tempUserId);
 
 			//id를 null로 초기화. 생성 당시는 id가 없기 때문
-			entity.setId(0);
+			entity.setId(null);
 			
 			//서비스를 통해 Todo 엔티티 생성
 			//변환한 데이터 DB 저장
@@ -64,10 +67,11 @@ public class TodoController {
 			List<TodoEntity> entities = todoService.create(entity);
 			
 			//Entity를 DTO로 변환
-			//1. ".stream().map(e -> new TodoDTO(e))": entity list stream()
-			//	 각 TodoEntity 객체를 TodoDTO 생성자를 이용해 변환
+			//	 → 각 TodoEntity 객체를 TodoDTO 생성자를 이용해 변환
+			//1. ".stream().map(e -> new TodoDTO(e))": stream() 이용해서 매핑
 			//2. ".collect(Collectors.toList())": 변환된 데이터를 리스트로 모음
 			List<TodoDTO> dtos = entities.stream()
+					// == .map(TodoDTO::new)
 					.map(e -> new TodoDTO(e))
 					.collect(Collectors.toList());
 			
@@ -85,10 +89,82 @@ public class TodoController {
 		catch (Exception e) {
 			String error = e.getMessage();
 			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
-
 			
 			//HTTP 상태 코드 400 반환
 			return ResponseEntity.badRequest().body(response);
+		}
+	}
+	
+	/**
+	 * Todo 조회
+	 * @return
+	 */
+	@GetMapping("retrieveTodo")
+	public ResponseEntity<?> retrieveTodo(){
+		String tempUserId = "tempUserId";
+		
+		List<TodoEntity> entities = todoService.retrieve(tempUserId);
+		
+		List<TodoDTO> todos = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
+		
+		ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(todos).build();
+		
+		return ResponseEntity.ok().body(response);
+	}
+	
+	/**
+	 * Todo 수정
+	 * @param dto
+	 * @return
+	 */
+	@PutMapping("/updateTodo")
+	public ResponseEntity<?> updateTodo(@RequestBody TodoDTO dto){
+		try {
+			String tempUserId = "tempUserId";
+			
+			TodoEntity entity = TodoDTO.todoEntity(dto);
+			
+			entity.setUserId(tempUserId);
+			
+			List<TodoEntity> entities = todoService.update(entity);
+			
+			List<TodoDTO> result = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
+			
+			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(result).build();
+			
+			return ResponseEntity.ok(response);
+		}
+		catch(Exception e) {
+			String error = e.getMessage();
+			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+			
+			return ResponseEntity.badRequest().body(response);
+		}
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<?> deleteTodo(@RequestBody TodoDTO dto){
+		try {
+			String tempUserId = "tempUserId";
+			
+			TodoEntity entity = TodoDTO.todoEntity(dto);
+			
+			entity.setUserId(tempUserId);
+			
+			List<TodoEntity> entities = todoService.delete(entity);
+			
+			List<TodoDTO> result = entities.stream().map(TodoDTO::new).collect(Collectors.toList());
+			
+			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().data(result).build();
+			
+			return ResponseEntity.ok(response);
+		}
+		catch(Exception e) {
+			String error = e.getMessage();
+			ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder().error(error).build();
+			
+			return ResponseEntity.badRequest().body(response);
+			
 		}
 	}
 }
